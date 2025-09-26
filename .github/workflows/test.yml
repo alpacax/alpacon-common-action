@@ -1,0 +1,78 @@
+name: Test Alpacon Common Action
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-basic-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Alpacon CLI
+        uses: alpacax/alpacon-setup-action@v1.0.0
+
+      - name: Test Server List Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'server ls'
+
+      - name: Test Group List Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'group ls'
+
+      - name: Test Event Log Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'event --tail=3'
+
+  test-complex-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Alpacon CLI
+        uses: alpacax/alpacon-setup-action@v1.0.0
+
+      - name: Test Note Creation Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'websh ${{ secrets.TEST_SERVER_NAME }} echo "This is a test from GitHub Actions"'
+
+      - name: Test Help Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: '--help'
+
+  test-error-handling:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Alpacon CLI
+        uses: alpacax/alpacon-setup-action@v1.0.0
+
+      - name: Test Invalid Command (should fail gracefully)
+        continue-on-error: true
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'invalid-command --nonexistent-flag'

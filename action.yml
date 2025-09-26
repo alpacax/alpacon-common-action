@@ -1,0 +1,29 @@
+name: 'Alpacon Common Action'
+description: 'Runs any non-standard or generic alpacon command.'
+author: sangyeong01
+
+branding:
+  icon: 'terminal'
+  color: 'blue'
+
+inputs:
+  workspace-url:
+    description: 'Alpacon workspace URL.'
+    required: true
+  api-token:
+    description: 'Alpacon API token for authentication.'
+    required: true
+  command:
+    description: 'Alpacon command to execute (e.g., "server ls", "note create --title test").'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Login to Alpacon
+      run: alpacon login ${{ inputs.workspace-url }} -t ${{ inputs.api-token }}
+      shell: bash
+    - name: Execute Alpacon Command
+      run: |
+        alpacon ${{ inputs.command }}
+      shell: bash 
