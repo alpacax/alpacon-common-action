@@ -41,4 +41,3 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 ## Notes
 
 - See [Alpacon CLI command list](https://docs.alpacax.com/alpacon/cli)
-- Example: `command: "group ls"`, `command: "note create --title 'test' --body 'hello'"` and more
