@@ -1,7 +1,7 @@
 
 # Alpacon Common Action
 
-Run any Alpacon CLI command in your AlpacaX workspace using this GitHub Action.
+Run any Alpacon CLI command in your Alpacon workspace using this GitHub Action.
 
 - Official Docs: [Alpacon CLI Guide](https://docs.alpacax.com/alpacon/cli)
 
@@ -19,13 +19,13 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
   uses: alpacax/alpacon-setup-action@v1.0.0
 ```
 
-## Usage Example
+## Usage examples
 
 ```yaml
 - name: Run Alpacon Command
   uses: alpacax/alpacon-common-action@v1.0.0
   with:
-    workspace-url: ${{ secrets.ALPACAX_WORKSPACE_URL }}
+    workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
     command: "server ls"
 ```
