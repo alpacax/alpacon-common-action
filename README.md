@@ -15,7 +15,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 ```yaml
 - name: Setup Alpacon CLI
-  uses: alpacax/alpacon-setup-action@v1.0.0
+  uses: alpacax/alpacon-setup-action@v1.1.0
 ```
 
 ## Usage examples
@@ -24,7 +24,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 ```yaml
 - name: List Servers
-  uses: alpacax/alpacon-common-action@v1.0.0
+  uses: alpacax/alpacon-common-action@v1.1.0
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
@@ -35,7 +35,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 ```yaml
 - name: List Groups
-  uses: alpacax/alpacon-common-action@v1.0.0
+  uses: alpacax/alpacon-common-action@v1.1.0
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
@@ -46,7 +46,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 ```yaml
 - name: View Recent Events
-  uses: alpacax/alpacon-common-action@v1.0.0
+  uses: alpacax/alpacon-common-action@v1.1.0
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
@@ -57,7 +57,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 ```yaml
 - name: Run Remote Command
-  uses: alpacax/alpacon-common-action@v1.0.0
+  uses: alpacax/alpacon-common-action@v1.1.0
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
@@ -76,7 +76,7 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| `alpacon: command not found` | CLI not installed | Add `alpacax/alpacon-setup-action@v1.0.0` before this action |
+| `alpacon: command not found` | CLI not installed | Add `alpacax/alpacon-setup-action@v1.1.0` before this action |
 | `login failed` | Invalid credentials | Verify `workspace-url` and `api-token` secrets are set correctly |
 | `unknown command` | Typo or unsupported command | Check the [CLI command list](https://docs.alpacax.com/alpacon/cli) |
 
