@@ -21,9 +21,12 @@ runs:
   using: "composite"
   steps:
     - name: Login to Alpacon
-      run: alpacon login ${{ inputs.workspace-url }} -t ${{ inputs.api-token }}
+      run: |
+        set -e
+        alpacon login ${{ inputs.workspace-url }} -t ${{ inputs.api-token }}
       shell: bash
     - name: Execute Alpacon Command
       run: |
+        set -e
         alpacon ${{ inputs.command }}
       shell: bash 
