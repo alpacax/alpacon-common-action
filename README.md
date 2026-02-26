@@ -1,4 +1,3 @@
-
 # Alpacon Common Action
 
 Run any Alpacon CLI command in your Alpacon workspace using this GitHub Action.
