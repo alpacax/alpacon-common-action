@@ -80,6 +80,17 @@ This action requires the Alpacon CLI to be installed in your workflow. Use the [
 | `login failed` | Invalid credentials | Verify `workspace-url` and `api-token` secrets are set correctly |
 | `unknown command` | Typo or unsupported command | Check the [CLI command list](https://docs.alpacax.com/alpacon/cli) |
 
+## Releasing
+
+When creating a new release, always update the `v1` major version tag:
+
+```bash
+git tag -f v1 v1.x.0
+git push origin v1 --force
+```
+
+This ensures users referencing `@v1` automatically get the latest release.
+
 ## Notes
 
 - See [Alpacon CLI command list](https://docs.alpacax.com/alpacon/cli)
