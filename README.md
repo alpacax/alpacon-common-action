@@ -4,7 +4,7 @@
 
 Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflow — a flexible escape hatch for operations not covered by the specialized actions.
 
-- Official Docs: [alpacon-common-action reference](https://docs.alpacax.com/reference/actions/common/)
+- [Official documentation](https://docs.alpacax.com/reference/actions/common/)
 
 ## Why use this action?
 
