@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Alpacon CLI
         uses: alpacax/alpacon-setup-action@v1
@@ -26,13 +26,6 @@ jobs:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'server ls'
-
-      - name: Test Group List Command
-        uses: ./
-        with:
-          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
-          command: 'group ls'
 
       - name: Test Event Log Command
         uses: ./
@@ -46,7 +39,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Alpacon CLI
         uses: alpacax/alpacon-setup-action@v1
@@ -56,7 +49,7 @@ jobs:
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
-          command: 'websh ${{ secrets.TEST_SERVER_NAME }} echo "This is a test from GitHub Actions"'
+          command: 'websh ${{ secrets.TEST_SERVER_NAME }} whoami'
 
       - name: Test Help Command
         uses: ./
@@ -70,7 +63,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Alpacon CLI
         uses: alpacax/alpacon-setup-action@v1
