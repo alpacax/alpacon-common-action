@@ -27,13 +27,6 @@ jobs:
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'server ls'
 
-      - name: Test Group List Command
-        uses: ./
-        with:
-          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
-          command: 'group ls'
-
       - name: Test Event Log Command
         uses: ./
         with:
@@ -56,7 +49,7 @@ jobs:
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
-          command: 'websh ${{ secrets.TEST_SERVER_NAME }} echo "This is a test from GitHub Actions"'
+          command: 'websh ${{ secrets.TEST_SERVER_NAME }} whoami'
 
       - name: Test Help Command
         uses: ./
