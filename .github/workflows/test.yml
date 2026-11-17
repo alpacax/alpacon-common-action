@@ -28,12 +28,12 @@ jobs:
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'server ls'
 
-      - name: Test Event Log Command
+      - name: Test Exec List Command
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
-          command: 'event --tail=3'
+          command: 'exec ls --tail=3'
 
   test-complex-commands:
     runs-on: ubuntu-latest

@@ -9,7 +9,7 @@ Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflo
 ## Why use this action?
 
 - **Full CLI access** — Run any `alpacon` command, not just websh or cp
-- **Automation friendly** — List servers, check status, manage groups, and view events from CI/CD
+- **Automation friendly** — List servers, check status, manage groups, and view command history from CI/CD
 - **Consistent auth** — Uses the same API token workflow as other Alpacon actions
 - **Composable** — Combine with other Alpacon actions for complex automation pipelines
 
@@ -44,15 +44,15 @@ jobs:
     command: "group ls"
 ```
 
-### View recent events
+### View recent command executions
 
 ```yaml
-- name: View recent events
+- name: View recent command executions
   uses: alpacax/alpacon-common-action@v1
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
     api-token: ${{ secrets.ALPACON_API_TOKEN }}
-    command: "event --tail=5"
+    command: "exec ls --tail=5"
 ```
 
 ## Inputs
