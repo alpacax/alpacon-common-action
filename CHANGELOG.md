@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Docs: recommend a service token for `api-token`. No behavior change.
+
 ## v1.2.0
 
 - Replace the `event --tail` examples with `exec ls --tail`, since Alpacon CLI v1.20.0 refuses `event --tail` and `exec ls` works on v1.19.0 and later
