@@ -52,6 +52,13 @@ jobs:
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh ${{ secrets.TEST_SERVER_NAME }} whoami'
 
+      - name: Test Quoted Argument Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'websh ${{ secrets.TEST_SERVER_NAME }} "echo hello world"'
+
       - name: Test Help Command
         uses: ./
         with:
@@ -76,3 +83,33 @@ jobs:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'invalid-command --nonexistent-flag'
+
+      - name: Test Unbalanced Quote Command (should fail)
+        id: unbalanced-quote
+        continue-on-error: true
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'websh "unbalanced'
+
+      - name: Assert unbalanced quote command failed
+        if: steps.unbalanced-quote.outcome != 'failure'
+        run: |
+          echo "Expected the unbalanced quote command to fail, got: ${{ steps.unbalanced-quote.outcome }}"
+          exit 1
+
+      - name: Test Whitespace-Only Command (should fail)
+        id: empty-command
+        continue-on-error: true
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: '   '
+
+      - name: Assert whitespace-only command failed
+        if: steps.empty-command.outcome != 'failure'
+        run: |
+          echo "Expected the whitespace-only command to fail, got: ${{ steps.empty-command.outcome }}"
+          exit 1
