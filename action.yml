@@ -21,12 +21,32 @@ runs:
   using: "composite"
   steps:
     - name: Login to Alpacon
+      env:
+        INPUT_WORKSPACE_URL: ${{ inputs.workspace-url }}
+        INPUT_API_TOKEN: ${{ inputs.api-token }}
       run: |
         set -e
-        alpacon login "${{ inputs.workspace-url }}" -t "${{ inputs.api-token }}"
+        alpacon login "$INPUT_WORKSPACE_URL" -t "$INPUT_API_TOKEN"
       shell: bash
     - name: Execute Alpacon Command
+      env:
+        INPUT_COMMAND: ${{ inputs.command }}
       run: |
-        set -e
-        alpacon ${{ inputs.command }}
+        set -eo pipefail
+        if [[ -z "${INPUT_COMMAND//[[:space:]]/}" ]]; then
+          echo "Error: command is empty" >&2
+          exit 1
+        fi
+        # xargs splits on whitespace and honors quotes only; nothing in the text is evaluated
+        args_file="$(mktemp "${RUNNER_TEMP:-/tmp}/alpacon-args.XXXXXX")"
+        trap 'rm -f "$args_file"' EXIT
+        if ! printf '%s' "$INPUT_COMMAND" | xargs printf '%s\0' > "$args_file"; then
+          echo "Error: could not split command into arguments; check that its quotes are balanced" >&2
+          exit 1
+        fi
+        ARGS=()
+        while IFS= read -r -d '' arg; do  # bash 3.2 on macOS runners has no mapfile -d
+          ARGS+=("$arg")
+        done < "$args_file"
+        alpacon "${ARGS[@]}"
       shell: bash
