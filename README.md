@@ -13,6 +13,16 @@ Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflo
 - **Consistent auth** — Uses the same API token workflow as other Alpacon actions
 - **Composable** — Combine with other Alpacon actions for complex automation pipelines
 
+## Authentication
+
+Use an Alpacon service token for `api-token`. A service token belongs to an IAM Application (a machine identity), not to a person, so it keeps working when people leave. Its access is limited by the token's scopes and its server, command, and file access rules.
+
+Store the token as a repository secret named `ALPACON_SERVICE_TOKEN`, as in the examples below. The input is named `api-token` for compatibility with published workflows and takes the service token as-is. Logging in with a service token (prefix `alpst-`) requires Alpacon CLI v1.7.4 or later.
+
+A personal API token still works, but depending on your Alpacon server release it may require an active, approved Work Session for command execution and file transfer. Service tokens do not need a Work Session for those operations; endpoint permissions still apply.
+
+See [Service tokens](https://docs.alpacax.com/use/iam/applications/service-tokens/) and the [GitHub Actions integration guide](https://docs.alpacax.com/integrate/github-actions/).
+
 ## Usage
 
 ### List servers
@@ -29,7 +39,7 @@ jobs:
         uses: alpacax/alpacon-common-action@v1
         with:
           workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.ALPACON_API_TOKEN }}
+          api-token: ${{ secrets.ALPACON_SERVICE_TOKEN }}
           command: "server ls"
 ```
 
@@ -40,7 +50,7 @@ jobs:
   uses: alpacax/alpacon-common-action@v1
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
-    api-token: ${{ secrets.ALPACON_API_TOKEN }}
+    api-token: ${{ secrets.ALPACON_SERVICE_TOKEN }}
     command: "group ls"
 ```
 
@@ -51,7 +61,7 @@ jobs:
   uses: alpacax/alpacon-common-action@v1
   with:
     workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
-    api-token: ${{ secrets.ALPACON_API_TOKEN }}
+    api-token: ${{ secrets.ALPACON_SERVICE_TOKEN }}
     command: "exec ls --tail=5"
 ```
 
@@ -60,7 +70,7 @@ jobs:
 | Name | Description | Required |
 |------|-------------|----------|
 | `workspace-url` | Alpacon workspace URL | Yes |
-| `api-token` | Alpacon API token for authentication | Yes |
+| `api-token` | Alpacon service token key (`alpst-`) | Yes |
 | `command` | Alpacon command to execute (without `alpacon` prefix) | Yes |
 
 ## Troubleshooting
