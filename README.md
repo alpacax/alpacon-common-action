@@ -70,7 +70,7 @@ jobs:
 | Name | Description | Required |
 |------|-------------|----------|
 | `workspace-url` | Alpacon workspace URL | Yes |
-| `api-token` | Alpacon service token key (`alpst-`) | Yes |
+| `api-token` | Alpacon service token key (`alpst-`), recommended. A personal API token also works | Yes |
 | `command` | Alpacon command to execute (without `alpacon` prefix) | Yes |
 
 ## Troubleshooting

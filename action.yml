@@ -11,7 +11,7 @@ inputs:
     description: 'Alpacon workspace URL.'
     required: true
   api-token:
-    description: 'Alpacon service token key (`alpst-`)'
+    description: 'Alpacon service token key (`alpst-`), recommended. A personal API token also works'
     required: true
   command:
     description: 'Alpacon command to execute (e.g., "server ls", "note create --title test").'
