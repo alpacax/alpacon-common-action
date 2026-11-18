@@ -59,6 +59,13 @@ jobs:
           api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh ${{ secrets.TEST_SERVER_NAME }} "echo hello world"'
 
+      - name: Test Escaped Space Command
+        uses: ./
+        with:
+          workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
+          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          command: 'websh ${{ secrets.TEST_SERVER_NAME }} echo\ hello'
+
       - name: Test Help Command
         uses: ./
         with:
