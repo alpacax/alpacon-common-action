@@ -84,7 +84,7 @@ jobs:
 ## Related actions
 
 - [alpacon-setup-action](https://github.com/alpacax/alpacon-setup-action) — Install Alpacon CLI (required)
-- [alpacon-websh-action](https://github.com/alpacax/alpacon-websh-action) — Execute shell commands on remote servers
+- [alpacon-exec-action](https://github.com/alpacax/alpacon-exec-action) — Execute shell commands on remote servers
 - [alpacon-cp-action](https://github.com/alpacax/alpacon-cp-action) — Copy files to/from remote servers
 
 ## Resources
