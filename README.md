@@ -13,16 +13,6 @@ Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflo
 - **Consistent auth**—Uses the same service token workflow as other Alpacon actions
 - **Composable**—Combine with other Alpacon actions for complex automation pipelines
 
-## How access is controlled
-
-This action runs on the service-token path, which is separate from the work sessions that people and AI agents open:
-
-- **Reviewed before it works**—A service token that can run commands or transfer files is approved in the Alpacon console before it authenticates anywhere.
-- **Deny by default**—Its ACL names the servers, commands and file paths the pipeline may use. Everything else is refused.
-- **No one waits**—Within that ACL the workflow runs without a work session or an approval step.
-- **Bounded**—Optional allowed IP ranges and hours, and an expiry set by the token's rotation policy.
-- **On the record**—Every command and file transfer is recorded under the token in the workspace audit log.
-
 ## Authentication
 
 Set `service-token` to an Alpacon service token (its key starts with `alpst-`). A service token belongs to an IAM Application (a machine identity), not to a person, so it keeps working when people leave. Its access is limited by the token's scopes and its server, command, and file access rules. A service token does not need a Work Session; endpoint permissions still apply.
@@ -30,6 +20,15 @@ Set `service-token` to an Alpacon service token (its key starts with `alpst-`). 
 Store the token as a repository secret named `ALPACON_SERVICE_TOKEN`, as in the examples below. Logging in with a service token requires Alpacon CLI v1.7.4 or later.
 
 See [Service tokens](https://docs.alpacax.com/use/iam/applications/service-tokens/) and the [GitHub Actions integration guide](https://docs.alpacax.com/integrate/github-actions/).
+
+## How access is controlled
+
+A service token is a separate path from the approved sessions that people and AI agents open in Alpacon. Its access is set before the workflow runs:
+
+- **Scopes decide the calls**—The token's scopes decide which Alpacon API calls it can make. A token that can run commands or transfer files waits for approval in the Alpacon web console and authenticates nowhere until it is approved.
+- **Deny by default**—For commands and file transfers, the token's access rules name the servers, commands and file paths it may use. Anything not listed is refused.
+- **Bounded**—You can limit the token to IP ranges and to hours and days of the week. It also has a rate limit and an expiry date.
+- **On the record**—API calls made with the token appear on its Activity tab, and the commands it runs appear in the workspace audit log.
 
 ## Usage
 
