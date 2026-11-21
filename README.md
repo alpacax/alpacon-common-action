@@ -25,10 +25,10 @@ See [Service tokens](https://docs.alpacax.com/use/iam/applications/service-token
 
 A service token is a separate path from the approved sessions that people and AI agents open in Alpacon. Its access is set before the workflow runs:
 
-- **Scopes decide the calls**—The token's scopes decide which Alpacon API calls it can make. A token that can run commands or transfer files waits for approval in the Alpacon web console and authenticates nowhere until it is approved.
+- **Scopes decide the calls**—The token's scopes, capped by its application's roles, decide which Alpacon API calls it can make. A token that can run commands or transfer files waits for approval in the Alpacon web console and authenticates nowhere until it is approved.
 - **Deny by default**—For commands and file transfers, the token's access rules name the servers, commands and file paths it may use. Anything not listed is refused.
 - **Bounded**—You can limit the token to IP ranges and to hours and days of the week. It also has a rate limit and an expiry date.
-- **On the record**—API calls made with the token appear on its Activity tab, and the commands it runs appear in the workspace audit log.
+- **On the record**—Changes the token makes through the API appear on its Activity tab; reads such as listing servers do not. The commands it runs appear in the workspace audit log.
 
 ## Usage
 
