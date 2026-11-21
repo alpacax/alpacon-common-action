@@ -2,7 +2,7 @@
 
 [![GitHub marketplace](https://img.shields.io/badge/marketplace-alpacon--common--action-blue?logo=github)](https://github.com/marketplace/actions/alpacon-common-action)
 
-Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflow — a flexible escape hatch for operations not covered by the specialized actions.
+Run any [Alpacon](https://alpacon.io) CLI command in your GitHub Actions workflow—a flexible escape hatch for operations not covered by the specialized actions.
 
 - [Official documentation](https://docs.alpacax.com/reference/actions/common/)
 
@@ -81,9 +81,9 @@ jobs:
 
 ## Related actions
 
-- [alpacon-setup-action](https://github.com/alpacax/alpacon-setup-action) — Install Alpacon CLI (required)
-- [alpacon-exec-action](https://github.com/alpacax/alpacon-exec-action) — Execute shell commands on remote servers
-- [alpacon-cp-action](https://github.com/alpacax/alpacon-cp-action) — Copy files to/from remote servers
+- [alpacon-setup-action](https://github.com/alpacax/alpacon-setup-action)—Install Alpacon CLI (required)
+- [alpacon-exec-action](https://github.com/alpacax/alpacon-exec-action)—Execute shell commands on remote servers
+- [alpacon-cp-action](https://github.com/alpacax/alpacon-cp-action)—Copy files to/from remote servers
 
 ## Resources
 
