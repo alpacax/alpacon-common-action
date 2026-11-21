@@ -25,14 +25,14 @@ jobs:
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'server ls'
 
       - name: Test Exec List Command
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'exec ls --tail=3'
 
   test-complex-commands:
@@ -49,28 +49,28 @@ jobs:
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh ${{ secrets.TEST_SERVER_NAME }} whoami'
 
       - name: Test Quoted Argument Command
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh ${{ secrets.TEST_SERVER_NAME }} "echo hello world"'
 
       - name: Test Escaped Space Command
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh ${{ secrets.TEST_SERVER_NAME }} echo\ hello'
 
       - name: Test Help Command
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: '--help'
 
   test-error-handling:
@@ -88,7 +88,7 @@ jobs:
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'invalid-command --nonexistent-flag'
 
       - name: Test Unbalanced Quote Command (should fail)
@@ -97,7 +97,7 @@ jobs:
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: 'websh "unbalanced'
 
       - name: Assert unbalanced quote command failed
@@ -112,7 +112,7 @@ jobs:
         uses: ./
         with:
           workspace-url: ${{ secrets.TEST_ALPACON_WORKSPACE_URL }}
-          api-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
+          service-token: ${{ secrets.TEST_ALPACON_API_TOKEN }}
           command: '   '
 
       - name: Assert whitespace-only command failed
