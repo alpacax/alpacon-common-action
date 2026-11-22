@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- State in the action description that the service token is limited to the API calls the workflow needs.
+
 ## v2.0.0
 
 - Breaking: replace the `api-token` input with `service-token`. To upgrade, change `api-token:` to `service-token:` and `@v1` to `@v2` in your workflows.

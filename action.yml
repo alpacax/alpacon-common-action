@@ -1,5 +1,5 @@
 name: 'Alpacon Common Action'
-description: 'Runs any non-standard or generic alpacon command.'
+description: 'Run Alpacon CLI commands from GitHub Actions with a service token limited to the API calls the workflow needs.'
 author: sangyeong01
 
 branding:
