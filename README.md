@@ -15,8 +15,8 @@ Use it for work the exec and cp actions don't cover, such as listing servers or 
 - **Scopes decide the calls**—The token's scopes, capped by its application's roles, decide which Alpacon API calls it can make. A token that can run commands or transfer files waits for approval in the Alpacon web console and authenticates nowhere until it is approved.
 - **Deny by default**—For commands and file transfers, the token's access rules name the servers, commands and file paths it may use. Anything not listed is refused.
 - **No interactive or admin access**—A service token cannot open a terminal session, a tunnel, or the browser editor, manage tokens or its own access rules, or approve requests.
-- **Bounded**—Every token has an expiry date and a rate limit, and you can disable it at any time. You can also limit it to hours and days of the week, and, on runners with fixed addresses such as self-hosted runners, to IP ranges.
-- **On the record**—Changes the token makes through the API appear on its Activity tab; reads such as listing servers do not. The commands it runs appear in the workspace audit log.
+- **Bounded**—Every token has an expiry date and a rate limit, and an admin can disable it instantly in the web console. You can also limit it to hours and days of the week, and, on runners with fixed addresses such as self-hosted runners, to IP ranges.
+- **On the record**—An admin sees the changes the token makes through the API on its Activity tab; reads such as listing servers do not appear there. The commands it runs appear in the workspace audit log.
 
 ## Authentication
 
@@ -60,6 +60,19 @@ The list shows only the servers in the token's server access rules.
 ```
 
 This needs the `group:read` scope.
+
+### View recent command executions
+
+```yaml
+- name: View recent command executions
+  uses: alpacax/alpacon-common-action@v2
+  with:
+    workspace-url: ${{ secrets.ALPACON_WORKSPACE_URL }}
+    service-token: ${{ secrets.ALPACON_SERVICE_TOKEN }}
+    command: "exec ls --tail 5"
+```
+
+This needs the `command:read` scope.
 
 ## Inputs
 
