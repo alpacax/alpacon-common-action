@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.1.0
 
 - State in the action description that the service token is limited to the API calls the workflow needs.
 
